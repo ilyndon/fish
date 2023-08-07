@@ -14,8 +14,8 @@
 				</swiper-item>
 			</swiper>
 		</view>
-		<view class="fish_grid">
-			<uni-grid :column="4" :showBorder="false"  :square="false">
+		<view class="fish-grid">
+			<uni-grid :column="4" :showBorder="false">
 				<uni-grid-item>
 					<view class="grid-box">鱼</view>
 				</uni-grid-item>
@@ -26,10 +26,38 @@
 					<view class="grid-box">蔬</view>
 				</uni-grid-item>
 				<uni-grid-item>
-					<view class="grid-box">、、</view>
+					<view class="grid-box">蛋</view>
 				</uni-grid-item>
 			</uni-grid>
 		</view>
+			<uni-section title="为你推荐" type="line" padding>
+				<view class="fish-card">
+					<view class="fish-card-left">
+						
+					</view>
+					<view class="fish-card-right">
+						<view class="top">
+							<text class="title">强哥鱼档</text>
+							<text class="integral">5.0分</text>
+						</view>
+						<view class="middle">
+							<view>
+								<text>最低20</text>
+							</view>
+							<view>
+								<text>销量600</text>
+								<text>人均20</text>								
+							</view>
+						</view>
+						<view class="bottom">
+							<uni-tag text="内有躺椅" type="warning" :inverted="true"></uni-tag>
+						</view>
+						
+					</view>
+				</view>
+			</uni-section>
+		
+
 	</view>
 </template>
 
@@ -66,6 +94,60 @@
 			}
 		}
 
+	}
+	
+	.fish-grid{
+		margin-top: 12upx;
+		.grid-box{
+			display: flex;
+			width: 100%;
+			height: 100%;
+			align-items: center;
+			justify-content: center;
+		}
+		
+	}
+	
+	.fish-card{
+		display: flex;
+		gap: 20upx;
+		height: 240upx;
+		padding: 20upx;
+		box-sizing: border-box;
+		border: 1px solid #ccc;
+		border-radius: 8upx;
+		&-left{
+			width: 200upx;
+			height: 200upx;
+			background: red;
+			border-radius: 8upx;
+		}
+		&-right{
+			flex: 1;
+			.top{
+				.title{
+					font-weight: 600;
+				}
+				.integral{
+					color: #8e8e8e;
+					font-size: 12px;
+					margin-left: 20upx;
+				}
+			}
+			.middle{
+				margin-top: 20upx;
+				display: flex;
+				justify-content: space-between;
+				color: #8e8e8e;
+				font-size: 12px;
+				text + text {
+					margin-left: 20upx;
+				}
+			}
+			.bottom{
+				margin-top: 32upx;
+			}
+		}
 	}
 
 </style>
