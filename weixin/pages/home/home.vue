@@ -3,7 +3,12 @@
 		<view class="uni-margin-wrap">
 			<swiper class="swiper" circular :indicator-dots="swiperOption.indicatorDots" :autoplay="swiperOption.autoplay" :interval="swiperOption.interval"
 				:duration="swiperOption.duration">
-				<swiper-item>
+				<swiper-item v-for="(item,index) in banner" :key="index">
+					<view class="swiper-item uni-bg-red">
+						<image :src="item.url" mode="widthFix"></image>
+					</view>
+				</swiper-item>
+<!-- 				<swiper-item>
 					<view class="swiper-item uni-bg-red">A</view>
 				</swiper-item>
 				<swiper-item>
@@ -11,7 +16,7 @@
 				</swiper-item>
 				<swiper-item>
 					<view class="swiper-item uni-bg-blue">C</view>
-				</swiper-item>
+				</swiper-item> -->
 			</swiper>
 		</view>
 		<view class="fish-grid">
@@ -65,12 +70,24 @@
 	import {
 		reactive
 	} from "vue";
+	import { getBanner } from "../../api/banner.js"
 	const swiperOption = reactive({
 		indicatorDots:false,
 		autoplay:true,
 		interval:2000,
 		duration:500
 	})
+	
+	const banner = reactive([])
+	const getBannerApi = async () =>{
+		const res = await getBanner()
+		if (res.code === 0){
+			banner.push(...res.data.list)
+		}
+		console.log(res)
+	}
+	
+	getBannerApi()
 </script>
 
 <style lang="scss">
@@ -83,15 +100,15 @@
 				width: 100%;
 				height: 100%;
 			}
-			.uni-bg-red{
-				background: red;
-			}
-			.uni-bg-green{
-				background: green;
-			}
-			.uni-bg-blue{
-				background: blue;
-			}
+			// .uni-bg-red{
+			// 	background: red;
+			// }
+			// .uni-bg-green{
+			// 	background: green;
+			// }
+			// .uni-bg-blue{
+			// 	background: blue;
+			// }
 		}
 
 	}
